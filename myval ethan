@@ -1,0 +1,70 @@
+public class Myval 
+{
+	static Scanner key = new Scanner(System.in);
+	
+	public static int validInt()
+	{
+		int num = 0;
+		boolean ok;
+		
+		do
+		{
+			try
+			{
+				ok = true;
+				my.p("\n\n\tEnter number:");
+				num = key.nextInt(); 
+				key.nextLine();
+				
+				/*if(num < min  || num > max)
+				{
+					ok = false;
+					my.p(String.format("\n\tError: Range is %2d - %2d.  Please re-enter.", min, max));
+				}*/
+			}
+			
+			catch(InputMismatchException e)
+			{
+				my.p("\n\tError:  Illegal character(s) in input - Please re-enter.");	
+				key.nextLine();
+				ok = false;
+			}
+		
+		}while(!ok);
+
+		return num;
+	}
+	
+	public static double validDouble()
+	{
+		double num = 0;
+		boolean ok;
+		
+		do
+		{
+			try
+			{
+				ok = true;
+				my.p("\n\n\tEnter number:");
+				num = key.nextDouble();
+				key.nextLine();
+				
+			/*	if(num < min  || num > max)
+				{
+					ok = false;
+					my.p(String.format("\n\tError: Range is %2d - %2d.  Please re-enter.", min, max));
+				}*/
+			}
+			
+			catch(InputMismatchException e)
+			{
+				my.p("\n\tError:  Illegal character(s) in input - Please re-enter.");	
+				key.nextLine();
+				ok = false;
+			}
+		
+		}while(!ok);
+
+		return num;
+	}
+}
