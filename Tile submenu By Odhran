@@ -1,0 +1,251 @@
+import java.util.Scanner;
+
+import general.My;
+
+
+public class Tiles 
+
+{
+public static Scanner key = new Scanner (System.in);
+
+	public static void main(String[] args) 
+	{
+		
+		int tiletype = 0,menuopt = 0,extras = 0, tile = 0;	
+		boolean subspacers = false, fittingcosts = false;
+		double L = 0.0, W = 0.0, A = 0.0,totalp = 0.00; 
+		
+		//Asking for the length and breath and then finding the area
+		
+		Line();
+		
+		My.skip(1);
+		
+		My.p("What is the length of your room?: ");
+		L = key.nextDouble();
+		
+		My.skip(1);
+		
+		My.p("What is the Width of your room?: ");
+		W = key.nextDouble();
+		
+		My.skip(1);
+		
+		A = Area(L,W);
+		My.p(String.format("Area: %.2f", A));
+		
+		Line();
+		
+		menuopt = submenu(menuopt);
+		
+		
+		//showing the option that the user entered and adding to the total price
+		switch (menuopt)
+		{
+		case 1: 
+			My.p("\n\n\tYou selected: " + menuopt);
+			totalp = totalp + 5.99;
+		break;
+		case 2:
+			My.p("\n\n\tYou selected: " + menuopt);
+			totalp = totalp + 6.89;
+		break;
+		case 3:
+			My.p("\n\n\tYou selected: " + menuopt);
+			totalp = totalp + 3.29;
+		break;
+		case 4:
+			My.p("\n\n\tYou selected: " + menuopt);
+			totalp = totalp + 4.67;
+		break;
+		case 5 :
+			My.p("\n\n\t You selected: " + menuopt);
+			totalp = totalp + 2.99;
+		break;
+		case 6 :
+			My.p("\n\n\tGoodbye");
+			System.exit(0);
+		break;
+		
+			}
+		My.p("\n");
+			Line();
+			My.skip(30);
+			
+			extras = submenu2(extras);//links extras method to appear here
+			
+			switch (extras)//switch method for extras
+			{
+			case 1: 
+				My.p("\n\n\tYou selected: " + extras);
+				totalp = totalp + 5.99;
+			break;
+			case 2:
+				My.p("\n\n\tYou selected: " + extras);
+				totalp = totalp + 6.89;
+			break;
+			case 3:
+				My.p("\n\n\tYou selected: " + extras);
+				totalp = totalp + 3.29;
+			break;
+			case 4 :
+				My.p("\n\n\tGoodbye");
+				System.exit(0);	
+			break;
+			}
+			
+			My.p("\n");
+			Line();
+			My.skip(30);
+			
+			subspacers = subspacers(subspacers);//shows subspacers menu
+			
+			My.p("\n");
+			Line();
+			My.skip(30);
+			
+			fittingcosts = submenu3(fittingcosts);//shows submenu3 menu 
+			
+			Line();
+			
+			My.p("\n");
+			Line();
+			My.p("\n");
+			
+			//tile = Bill(tile); not sure why this wont link
+	
+	}
+
+	//CALCUATING THE AREA
+	public static double Area(double L, double W)
+	
+	{
+		double AreaRESULT;
+		AreaRESULT = L*L * W*W;
+		AreaRESULT= Math.sqrt(AreaRESULT);
+		return AreaRESULT; 
+	}
+	
+	public static int submenu(int menuopt)
+	
+	{
+		
+			My.skip(30);
+		//listing the options for tiles
+			My.p("\n\n\tWhich off the following tiles would you like: ");
+			My.p("\n\n\t1: Quartz Stone Midnight Black: £5.99: Tile size: 300x300mm(M) ");
+			My.p("\n\n\t2: Presealed Terracotta: £6.89: Tile size: 300x300mm(M) ");
+			My.p("\n\n\t3: Super White Porcelain: £3.29: Tile size: 300x600mm(L) ");
+			My.p("\n\n\t4: Coda Grey: £4.67: Tile size: 310x560mm(L) ");
+			My.p("\n\n\t5: Grey marbel: £2.99: Tile size: 300x150mm(S)  ");
+			My.p("\n\n\t6: EXIT: ");
+		
+		menuopt = key.nextInt();
+		return menuopt;
+		
+		
+	}
+	//This is for the for the extras 
+	public static int submenu2(int extras)
+	{
+		My.p("\n\n\tWhich off the following tiles would you like: ");
+		My.p("\n\n\t1: Grey Grout 5kg: £29.95: 20 square meters ");
+		My.p("\n\n\t2: White Grout 2kg: £19.95: 8 square meters ");
+		My.p("\n\n\t3: Spaces(Pack of 50): £5.99: undefined ");
+		My.p("\n\n\t4: EXIT: ");
+		
+		extras = key.nextInt();
+		return extras;
+	
+	}
+	public static boolean subspacers(boolean subspacers)//asking do they want spacers
+	{
+		String input = "";
+		char option1=' ';
+		My.p("\n\n\tWould you like spacers: Y/N ");
+		input = key.next();
+		
+		option1 = input.charAt(0);
+		if (option1 == 'Y'|| option1 == 'y')
+		{
+				subspacers=false;
+				
+		}
+		else subspacers = true;
+		return subspacers;
+	}
+	
+	public static boolean submenu3(boolean fittingcosts)//asking do they want it fitted
+	{
+		String input = "";
+		char Option = ' ';
+		My.p("\n\n\tWould you like it fitted: Y/N ");
+		input = key.next();
+		
+		Option = input.charAt(0);
+		if (Option == 'Y'|| Option == 'y')
+		{
+				fittingcosts=false;
+				
+		}
+		else fittingcosts = true;
+		
+		return fittingcosts;
+	}
+	
+	
+	
+	
+	
+	public static int Bill(int tile, double tileprice, double fittingcost, double extra,int x,int y, int z, int w, int menuopt, int extras,boolean fittingcosts, boolean subspacers, double totalp,double A, int bill, int extras1)
+	{
+		{
+			int x1 = 0, y1 = 0; 	// used to hold different parts off extra,menuopt etc
+			boolean z1 , w1;	// used to hold different parts off extra,menuopt etc
+			double[] tileprice1 = {5.99, 6.89, 3.29, 4.67, 2.99};
+			double fittingcost1 = 0.00;
+			double[] extra1 = {29.95,19.95};
+			String[] Tiles = {"Quartz Stone Midnight Black","Presealed Terracotta", "Super White porclain","Coda Grey", "Grey Marble Split Mosaic" };
+			String[] extra11 = {"Grey Grout 5kg", "White Grout 2 kg"};
+			int sqm = 0, tileA=0;
+			
+			
+			
+			
+			
+			//helping figuring the number of tiles needed for the area
+			while (sqm < A)
+			{
+				sqm +=1;
+			}
+			tileA = sqm; 
+			
+			
+		//this links to the user input that has been given from submenu	
+			x1 = submenu(x1) - 1; // this is the linking x to the menuopt
+			menuopt = submenu(x1) - 1;
+			y1 = submenu2(y1) - 1;
+		   
+			z1 = fittingcosts;
+			w1 = subspacers;
+			
+			//BIll
+			
+			My.p("Bill");
+			My.p("Tiles selected: :" + menuopt );
+			
+			
+		return tile;
+		}
+		
+	}
+	public static void Line()//this is a for loop for doing the spaces between different parts off the code
+	{
+	
+		for (int i=0;i<50;i++)
+		{
+			My.p("-");
+		}
+	}
+	
+}
