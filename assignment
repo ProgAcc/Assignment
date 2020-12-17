@@ -1,0 +1,110 @@
+public static void WoodFlooring() {
+		//Ethan Thompson
+		
+Scanner key = new Scanner(System.in);
+		
+		int userinput = 0, userinput2 = 0, userinput3 = 0, flooring = 0, underlayamount = 1 ;
+		double price1 = 0.00, price2 = 0.00, price3 = 0.00, sqm1 = 0.00, sqm2 = 0.00, temp = 0.00, length = 0.00, width = 0.00, overall = 0.00
+				,temp2 =0.00, temp3=0.00;
+		
+		//menu code
+		my.p(String.format("\n\n\t %-15s %15s %15s %s %15s", "Name", "|","Price per sq m", "|", "Other details"));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "1.Rustic Oak", "|", "£33.98", "|", " "));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "2.Natural Oak", "|", "£27.99", "|", " "));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "3.Golden Oak", "|", "£39.99", "|", " "));
+		my.p(String.format("\n\t %-15s %14s %15s %s %15s", "4.Mayfair Walnut", "|", "£99.00", "|", " "));
+		my.p("\n\t");
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "Extras:", "|", "", "|", " "));
+		my.p(String.format("\n\t %-15s %4s %15s %s %15s", "5.Underlay- Vapour barrier", "|", "£19.99", "|", "Roll of 20 sq m "));
+		my.p(String.format("\n\t %-15s %2s %15s %s %15s", "6.Underlay- Timberlay Silver", "|", "£49.99", "|", "Roll of 10 sq m "));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "7.No extras", "|", " ", "|", " "));
+		my.p("\n\t");
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "Fitting Costs:", "|", " ", "|", " "));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "8.Up to 20 sq m", "|", "£200.00", "|", " "));
+		my.p(String.format("\n\t %-15s %8s %15s %s %15s", "9.Between 20 - 40 sq m", "|", "£350.00", "|", " "));
+		my.p(String.format("\n\t %-15s %15s %15s %s %15s", "10.Over 40 sq m", "|", "£350.00", "|", "+ £7 per sq m over 40 "));
+		my.p("\n\t-------------------------------------------------------------------------");
+		//first choice
+		my.p("\n\n\t Please choose an option from the first table number 1 - 4.");
+		//user input
+		userinput = Myval.validInt();
+		my.p("\n\n\t Please choose an option from the second table number 5 - 7.");
+		userinput2 = Myval.validInt();
+		my.p("\n\n\t Please enter the width of the room.");
+		width = Myval.validDouble();
+		my.p("\n\n\t Please enter the length of the room.");
+		length = Myval.validDouble();
+		//calculation for sq m
+		sqm1 = length * width;
+		my.p("\n\n\t Would you like us to fit your flooring enter 1.yes 2.No");
+		flooring = Myval.validInt();
+		
+		//if statement for userinput of flooring
+		if (userinput == 1) {
+			price1 = sqm1 * 33.98;
+		}else if (userinput == 2) {
+			price1 = sqm1 * 27.99;
+		}else if (userinput == 3) {
+			price1 = sqm1 * 39.99;
+		}else if (userinput == 4) {
+			price1 = sqm1 * 99.00;
+		}else {
+			my.p("\n\n\t Invalid input.");
+		}
+		
+		//if statement for userinput of underlay
+		if (userinput2 == 5) {
+			underlayamount = (int) (sqm1 / 20);
+			if (sqm1 % 20 != 0) {
+				underlayamount = underlayamount + 1;
+				price2 = underlayamount * 19.99;
+			}
+			}else if (userinput2 == 6) {
+			underlayamount = (int) (sqm1 / 10);
+			if (sqm1 % 10 != 0) {
+				underlayamount = underlayamount + 1;
+				price2 = underlayamount * 49.99;
+			}
+			}else if (userinput2 == 7){
+				price2 = 0.00;
+			}else {
+			
+				my.p("\n\n\t Invalid input.");
+			}
+		//userinput of fitting.
+		if (flooring == 1) {
+			if (sqm1 <= 20) {
+				price3 = 200.00;
+			}else if (sqm1 >= 21 && sqm1 <= 40) {
+				price3 = 350.00;
+			}else if (sqm1 >= 41) {
+				temp = sqm1 - 40;
+				price3 = 350.00;
+				temp = temp * 7;
+				price3 = price3 + temp;
+			}
+		}
+		overall = price3 + price2 + price1;
+		
+		//if statement to work out if delivery fee is required
+		if (overall <= 1000) {
+			overall = overall + 40.00;
+		}
+		
+		
+		//receipt for the final screen where user will see all the prices
+		my.p("\n\n\t *********Reciept**********");
+		my.p(String.format("\n\n\t %15s %.2f", "Your flooring price is £", price1));
+		my.p("\n\n\t Your extra costs are £" + price2);
+		my.p("\n\n\t Your fitting cost is £" + price3);
+		my.p("\n\n\t********************************");
+		my.p("\n\n\t Your overall price for your wood flooring is £" + overall);
+		
+		
+		
+		
+		
+	}
+
+		
+	}
